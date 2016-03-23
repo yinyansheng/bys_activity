@@ -1,9 +1,0 @@
-c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\bin\Debug\bys.activity.biz.dll
-c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\bin\Debug\bys.activity.biz.pdb
-c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\obj\Debug\bys.activity.biz.csprojResolveAssemblyReference.cache
-c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\obj\Debug\bys.activity.biz.dll
-c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\obj\Debug\bys.activity.biz.pdb
-C:\Users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\bin\Debug\bys.activity.dal.dll
-C:\Users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\bin\Debug\EntityFramework.dll
-C:\Users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\bin\Debug\bys.activity.dal.pdb
-C:\Users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.biz\bin\Debug\EntityFramework.xml
