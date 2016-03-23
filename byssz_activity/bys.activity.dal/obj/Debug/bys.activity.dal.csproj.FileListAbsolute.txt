@@ -1,0 +1,14 @@
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\bin\Debug\bys.activity.dal.dll
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\bin\Debug\bys.activity.dal.pdb
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\obj\Debug\bys.activity.dal.csprojResolveAssemblyReference.cache
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\obj\Debug\bys.activity.dal.dll
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\obj\Debug\bys.activity.dal.pdb
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\bin\Debug\bys.activity.dal.dll.config
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\bin\Debug\EntityFramework.dll
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\bin\Debug\EntityFramework.xml
+c:\users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\obj\Debug\bys.activity.dal.Migrations.init.resources
+C:\Users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\obj\Debug\bys.activity.dal.csproj.GenerateResource.Cache
+C:\Users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\obj\Debug\bys.activity.dal.Migrations.addCreteDate.resources
+C:\Users\v-yanyin\documents\visual studio 2013\Projects\byssz_activity\bys.activity.dal\obj\Debug\bys.activity.dal.Migrations.addlogtable.resources
