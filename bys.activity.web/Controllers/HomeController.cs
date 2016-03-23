@@ -102,6 +102,5 @@ namespace bys.activity.web.Controllers
             return RedirectToAction("Index");
         }
 
-
     }
 }
