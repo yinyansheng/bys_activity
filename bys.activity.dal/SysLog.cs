@@ -17,6 +17,8 @@ namespace bys.activity.dal
         public string Type { get; set; }
         [MaxLength(200)]
         public string UserName { get; set; }
+        [MaxLength(50)]
+        public string Area { get; set; }
         [MaxLength(200)]
         public string ControllerName { get; set; }
         [MaxLength(200)]
