@@ -15,6 +15,38 @@ namespace bys.activity.dal
             return db.SaveChanges() > 0;
         }
 
+        public List<Activity> GetByPage(string sortOrder,string searchString)
+        {
+            BADBContext db = new BADBContext();
+
+            var activities = from a in db.Activities
+                           select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                activities = activities.Where(s => s.Name.Contains(searchString)
+                                       || s.Detail.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    activities = activities.OrderByDescending(s => s.Name);
+                    break;
+                case "Date":
+                    activities = activities.OrderBy(s => s.StartDateTime);
+                    break;
+                case "date_desc":
+                    activities = activities.OrderByDescending(s => s.StartDateTime);
+                    break;
+                default:
+                    activities = activities.OrderBy(s => s.Name);
+                    break;
+            }
+
+            return activities.ToList();
+        }
+
         public List<Activity> GetAll()
         {
             BADBContext db = new BADBContext();

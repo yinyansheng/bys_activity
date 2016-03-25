@@ -1,13 +1,86 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Home";
+    int index = 1;
 }
 
+@model PagedList.IPagedList<bys.activity.dal.Activity>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<br/>
-<a class="btn btn-default" href="#" role="button">Create New</a>
-<br/>
-<br/>
 
-<div class="table-responsive"> <table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> <tr> <th scope="row">2</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> <tr> <th scope="row">3</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> </tbody> </table> </div>
+<br />
+@using (Html.BeginForm("Index", "Home", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default", @role = "button",  @target = "_blank"  })
+    </div>
+    <div class="form-group">
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @placeholder = "Find by name/detail" })
+    </div>
+    <button type="submit" class="btn btn-default">Search</button>
+    <br />
+    <br />
+}
 
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Start Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+                </th>
+                <th>
+                    EndDateTime
+                </th>
+                <th>
+                    OriginatorAlias
+                </th>
+                <th>
+                    Detail
+                </th>
+                <th class="col-md-2">
+                    Operations
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(index++)
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.StartDateTime
+                    </td>
+                    <td>
+                        @item.EndDateTime
+                    </td>
+                    <td>
+                        @item.OriginatorAlias
+                    </td>
+                    <td>
+                        @item.Detail
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Create") |
+                        @Html.ActionLink("Detail", "Create") |
+                        @Html.ActionLink("Delete", "Delete",new { @ActivityID = item.ID})
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+
+<br />
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount

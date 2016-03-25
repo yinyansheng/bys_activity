@@ -34,25 +34,11 @@
                 <ul class="nav navbar-nav navbar-right" id="Setting" data-position="bootom" data-intro="Here you can change type." data-step="2">
                     <li class="dropdown">
                         <a class="dropdown-toggle " href="javascript:void(0)" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-cog"></span>
+                            <span class="glyphicon glyphicon-user"></span>
                             <span class="spliter">
-                                 @User.Identity.Name.Split('\\')[1]<b class="caret"></b>
+                                @User.Identity.Name.Split('\\')[1]
                             </span>
                         </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            @if (bys.activity.web.Utils.Configer.Administrators.Contains(User.Identity.Name.Split('\\')[1]))
-                            {
-                                <li>
-                                    <a href="@Url.Action("Create", "Home")">
-                                        <span class="glyphicon glyphicon-file"></span>
-                                        <span class="spliter">
-                                            <b>Create New</b>
-                                        </span>
-                                    </a>
-                                </li>
-                            }
-                        </ul>
                     </li>
                 </ul>
 

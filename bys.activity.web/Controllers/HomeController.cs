@@ -49,11 +49,6 @@ namespace bys.activity.web.Controllers
             return s.ToString("MM/dd HH:mm") + " -" + e.ToString("MM/dd HH:mm");
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         public ActionResult Join(Guid ActivityID)
         {
             string CurrentAlias = User.Identity.Name;
@@ -76,31 +71,9 @@ namespace bys.activity.web.Controllers
             return RedirectToAction("Index");
         }
 
-        [AdminAuthorize]
-        public ActionResult Delete(Guid ActivityID)
-        {
-            activityDal.Delete(ActivityID);
-            return RedirectToAction("Index");
-        }
 
-        [AdminAuthorize]
-        public ActionResult Submit(CreateActivityVM cvm) {
 
-            Activity activity = new Activity()
-            {
-                ID = Guid.NewGuid(),
-                Name = cvm.Name,
-                EndDateTime = cvm.EndDateTime,
-                StartDateTime = cvm.StartDateTime,
-                Address = cvm.Address,
-                Detail = cvm.Description,
-                OriginatorAlias=User.Identity.Name,
-                CreateDate=DateTime.UtcNow.AddHours(8)
-            };
-
-            activityDal.Save(activity);
-            return RedirectToAction("Index");
-        }
+     
 
     }
 }
