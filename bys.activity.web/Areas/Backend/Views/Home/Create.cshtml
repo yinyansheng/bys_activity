@@ -1,0 +1,104 @@
+﻿@model bys.activity.web.Models.CreateActivityVM
+@{
+    ViewBag.Title = "Create Activity";
+}
+
+<br/>
+<h2>create a activity</h2>
+
+@using (Html.BeginForm("Submit", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "CreateForm", @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control required", @placeholder = "activity name" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Type</label>
+        <div class="col-sm-4">
+            @Html.DropDownListFor(model => model.Type, new SelectListItem[] { new SelectListItem() { Text = "羽毛球", Value = "羽毛球" } }, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputStartDateTime" class="col-sm-2 control-label">Start&End DateTime</label>
+        <div class="col-sm-4">
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-12'>
+                        <div class="form-group">
+                            <div class='input-group date' id='dp_start'>
+                                @Html.TextBoxFor(model => model.StartDateTime, new { @class = "form-control required" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-12'>
+                        <div class="form-group">
+                            <div class='input-group date' id='dp_end'>
+                                @Html.TextBoxFor(model => model.EndDateTime, new { @class = "form-control required" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+        <div class="col-sm-8">
+            @Html.TextAreaFor(model => model.Address, new { @class = "form-control required", @placeholder = "address", @rows = "3" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputDetail" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-8">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control required", @placeholder = "description", @rows = "3" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+
+<script>
+    $(function () {
+        $('#dp_start').datetimepicker();
+        $('#dp_end').datetimepicker();
+
+        $("#dp_start").on("dp.change", function (e) {
+            $('#dp_end').data("DateTimePicker").minDate(e.date);
+        });
+
+    });
+
+    $("#CreateForm").validate({
+        errorPlacement: function (error, element) {
+        }
+    });
+
+</script>
