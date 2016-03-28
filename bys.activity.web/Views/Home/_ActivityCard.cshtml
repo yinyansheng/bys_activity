@@ -1,0 +1,68 @@
+﻿@model bys.activity.web.Models.ActivityVM
+
+<div class='panel @(Model.IsExpeired?"panel-default":"panel-success")'>
+    <div class="panel-heading">
+        Badminton Activity (<label>Status:@(Model.IsExpeired ? "Expeired" : "In progress")</label>)
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <img id="poster_img" src="~/Images/poster.jpg" width="200" height="300">
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12 ActivityName">
+                        <h3>@Model.activity.Name</h3>
+                    </div>
+                    <div class="col-md-3 ActivityModel">Time：</div><div class="col-md-9 ActivityModel"><b>  @Model.TimeInfo </b></div>
+                    <div class="col-md-3 ActivityModel">Address：</div><div class="col-md-9 ActivityModel">  @Model.activity.Address </div>
+                    <div class="col-md-3 ActivityModel">Originator：</div><div class="col-md-9 ActivityModel"> @Model.activity.OriginatorAlias.Split('\\')[1] </div>
+                    <div class="col-md-3 ActivityModel">Detail：</div><div class="col-md-9 ActivityModel">   @Model.activity.Detail </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Join Members(Total: @Model.JoinInfos.Count())</label><br />
+                @foreach (var member in Model.JoinInfos)
+                {
+                    <code> @member.MemberAlias.Split('\\')[1] </code>
+                }
+                <br />
+                <br />
+                <label>Like Members(Total: @Model.LikeInfos.Count())</label><br />
+                @foreach (var member in Model.LikeInfos)
+                {
+                    <code> @member.MemberAlias.Split('\\')[1] </code>
+                }
+
+               
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="pull-right">
+
+                @if (Model.IsLike)
+                {
+                    <a class="btn btn-sm btn-warning" href="/Home/UnLike?ActivityID=@Model.activity.ID"><span class="glyphicon glyphicon-thumbs-down"  title="don't' like" aria-hidden="true"></span></a>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-success" href="/Home/Like?ActivityID=@Model.activity.ID"><span class="glyphicon glyphicon-thumbs-up" title="like this" aria-hidden="true"></span></a>
+                }
+
+                @if (!Model.IsExpeired)
+                {
+                    if (Model.IsJoin)
+                    {
+                        <a class="btn btn-sm btn-warning" href="/Home/Quit?ActivityID=@Model.activity.ID">Quit</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-sm btn-success" href="/Home/Join?ActivityID=@Model.activity.ID">Join</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
