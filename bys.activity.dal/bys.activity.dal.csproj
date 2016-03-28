@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity.cs" />
+    <Compile Include="ActivityLikeInfo.cs" />
     <Compile Include="ActivityJoinInfo.cs" />
     <Compile Include="ActivityType.cs" />
     <Compile Include="BADBContext.cs" />
@@ -68,6 +69,10 @@
     <Compile Include="Migrations\201603241158344_add area info for log table.Designer.cs">
       <DependentUpon>201603241158344_add area info for log table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603281358111_add_like_table.cs" />
+    <Compile Include="Migrations\201603281358111_add_like_table.Designer.cs">
+      <DependentUpon>201603281358111_add_like_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysLog.cs" />
@@ -88,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603241158344_add area info for log table.resx">
       <DependentUpon>201603241158344_add area info for log table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603281358111_add_like_table.resx">
+      <DependentUpon>201603281358111_add_like_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

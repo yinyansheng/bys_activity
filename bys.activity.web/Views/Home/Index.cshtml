@@ -4,56 +4,9 @@
 
 @model bys.activity.web.Models.HomeVM
 
-@foreach (var item in Model.Activities)
+@foreach (bys.activity.web.Models.ActivityVM item in Model.Activities)
 {
-    <div class='panel @(item.IsExpeired?"panel-default":"panel-success")'>
-        <div class="panel-heading">
-            Badminton Activity (<label>Status:@(item.IsExpeired ? "Expeired" : "In progress")</label>)
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3">
-                    <img id="poster_img" src="~/Images/poster.jpg" width="200" height="300">
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12 ActivityName">
-                            <h3>@item.activity.Name</h3>
-                        </div>
-                        <div class="col-md-3 ActivityItem">Time：</div><div class="col-md-9 ActivityItem"><b>  @item.TimeInfo </b></div>
-                        <div class="col-md-3 ActivityItem">Address：</div><div class="col-md-9 ActivityItem">  @item.activity.Address </div>
-                        <div class="col-md-3 ActivityItem">Originator：</div><div class="col-md-9 ActivityItem"> @item.activity.OriginatorAlias.Split('\\')[1] </div>
-                        <div class="col-md-3 ActivityItem">Detail：</div><div class="col-md-9 ActivityItem">   @item.activity.Detail </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label>Join Members(Total: @item.JoinInfos.Count())</label><br />
-                    @foreach (var member in item.JoinInfos)
-                    {
-                        <code> @member.MemberAlias.Split('\\')[1] </code>
-                    }
-
-                    <br />
-
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="pull-right">
-                    @if (!item.IsExpeired)
-                    {
-                        if (item.IsJoin)
-                        {
-                            <a class="btn btn-lg btn-warning" href="/Home/Quit?ActivityID=@item.activity.ID">Quit</a>
-                        }
-                        else
-                        {
-                            <a class="btn btn-lg btn-success" href="/Home/Join?ActivityID=@item.activity.ID">Join</a>
-                        }
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_ActivityCard", item)
 }
 
 <style type="text/css">
@@ -68,22 +21,6 @@
     }
 </style>
 
-<script>
 
-    $(function ()
-    {
-        $(".delete").click(function () {
-            {
-                if (confirm('are you sure to delete this?')) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-        });
-    })
-
-</script>
 
 @*https://microsoft-my.sharepoint.com/_layouts/15/me.aspx?u=0c821fd0-bd43-45dd-a822-5facc83e602d&p=v-yln%40microsoft.com&v=profile*@

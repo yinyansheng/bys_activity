@@ -19,6 +19,9 @@ namespace bys.activity.dal
         public DbSet<ActivityJoinInfo> ActivityJoinInfos { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<SysLog> SysLogs { get; set; }
+        public DbSet<ActivityLikeInfo> ActivityLikeInfos { get; set; }
+
+        
     }
 
     public class BADBContextInitializer : CreateDatabaseIfNotExists<BADBContext>

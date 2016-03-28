@@ -19,8 +19,10 @@ namespace bys.activity.web.Models
         public Activity activity { get; set; }
         public ActivityType activityType { get; set; }
         public List<ActivityJoinInfo> JoinInfos { get; set; }
+        public List<ActivityLikeInfo> LikeInfos { get; set; }
         public bool IsExpeired { get; set; }
         public bool IsJoin { get; set; }
+        public bool IsLike { get; set; }
         public string TimeInfo { get; set; }
     }
 

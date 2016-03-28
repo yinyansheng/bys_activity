@@ -27,26 +27,20 @@ namespace bys.activity.web.Controllers
             foreach (var item in activities)
             {
                 var joinInfosTemp = activityDal.GetAllJoinInfo(item.ID);
+                var likeInfosTemp = activityDal.GetAllLikeInfo(item.ID);
                 hvm.Activities.Add(new ActivityVM()
                 {
-                    activity=item,
-                    IsExpeired=DateTime.UtcNow.AddHours(8)>item.StartDateTime,
-                    JoinInfos=joinInfosTemp,
-                    IsJoin = joinInfosTemp.Select(r=>r.MemberAlias).Contains(CurrentAlias),
-                    TimeInfo = GetTimeInfo(item.StartDateTime,item.EndDateTime)
+                    activity = item,
+                    IsExpeired = DateTime.UtcNow.AddHours(8) > item.StartDateTime,
+                    JoinInfos = joinInfosTemp,
+                    LikeInfos = likeInfosTemp,
+                    IsJoin = joinInfosTemp.Select(r => r.MemberAlias).Contains(CurrentAlias),
+                    IsLike = likeInfosTemp.Select(r => r.MemberAlias).Contains(CurrentAlias),
+                    TimeInfo = CommonUtils.GetTimeInfo(item.StartDateTime, item.EndDateTime)
                 });
             }
 
             return View(hvm);
-        }
-
-        private string GetTimeInfo(DateTime s, DateTime e) {
-            
-            if (s.Date == e.Date) {
-                return string.Format("{0}/{1} {2} {3}-{4}", s.Month, s.Day, s.DayOfWeek, s.Hour + ":" + s.Minute, e.Hour + ":" + e.Minute);
-            }
-
-            return s.ToString("MM/dd HH:mm") + " -" + e.ToString("MM/dd HH:mm");
         }
 
         public ActionResult Join(Guid ActivityID)
@@ -67,13 +61,31 @@ namespace bys.activity.web.Controllers
         public ActionResult Quit(Guid ActivityID)
         {
             string CurrentAlias = User.Identity.Name;
-            activityDal.DeleteJoinInfo(ActivityID,CurrentAlias);
+            activityDal.DeleteJoinInfo(ActivityID, CurrentAlias);
             return RedirectToAction("Index");
         }
 
+        public ActionResult Like(Guid ActivityID)
+        {
+            string CurrentAlias = User.Identity.Name;
+            ActivityLikeInfo info = new ActivityLikeInfo()
+            {
+                ID = Guid.NewGuid(),
+                ActivityID = ActivityID,
+                MemberAlias = CurrentAlias,
+                LikeTime = DateTime.UtcNow.AddHours(8)
+            };
 
+            activityDal.SaveLikeInfo(info);
+            return RedirectToAction("Index");
+        }
 
-     
+        public ActionResult UnLike(Guid ActivityID)
+        {
+            string CurrentAlias = User.Identity.Name;
+            activityDal.DeleteLikeInfo(ActivityID, CurrentAlias);
+            return RedirectToAction("Index");
+        }
 
     }
 }

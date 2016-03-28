@@ -64,6 +64,17 @@ namespace bys.activity.dal
             return db.SaveChanges()>0;
         }
 
+        public bool SaveLikeInfo(ActivityLikeInfo info)
+        {
+            BADBContext db = new BADBContext();
+
+            if (db.ActivityLikeInfos.Where(r => r.MemberAlias == info.MemberAlias && r.ActivityID == info.ActivityID).Count() > 0)
+                return true;
+
+            db.ActivityLikeInfos.Add(info);
+            return db.SaveChanges() > 0;
+        }
+
         public bool DeleteJoinInfo(Guid ActivityID, string MemberAlias)
         {
             BADBContext db = new BADBContext();
@@ -72,10 +83,24 @@ namespace bys.activity.dal
             return db.SaveChanges() > 0;
         }
 
+        public bool DeleteLikeInfo(Guid ActivityID, string MemberAlias)
+        {
+            BADBContext db = new BADBContext();
+            var info = db.ActivityLikeInfos.Where(r => r.MemberAlias == MemberAlias && r.ActivityID == ActivityID).FirstOrDefault();
+            db.ActivityLikeInfos.Remove(info);
+            return db.SaveChanges() > 0;
+        }
+
         public List<ActivityJoinInfo> GetAllJoinInfo(Guid ActivityID)
         {
             BADBContext db = new BADBContext();
             return db.ActivityJoinInfos.Where(r =>r.ActivityID == ActivityID).ToList();
+        }
+
+        public List<ActivityLikeInfo> GetAllLikeInfo(Guid ActivityID)
+        {
+            BADBContext db = new BADBContext();
+            return db.ActivityLikeInfos.Where(r => r.ActivityID == ActivityID).ToList();
         }
 
         public bool Delete(Guid ActivityID)
