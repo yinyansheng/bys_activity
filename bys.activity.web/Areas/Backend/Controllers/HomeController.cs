@@ -44,6 +44,24 @@ namespace bys.activity.web.Areas.Backend.Controllers
         }
 
         [AdminAuthorize]
+        public ActionResult Edit(Guid ActivityID)
+        {
+            CreateActivityVM model = activityDal.GetByCondition(delegate (Activity act)
+            {
+                return act.ID.Equals(ActivityID);
+            }).Select(r => new CreateActivityVM()
+            {
+                ID = r.ID,
+                Name = r.Name,
+                StartDateTime = r.StartDateTime,
+                EndDateTime = r.EndDateTime,
+                Address = r.Address,
+                Description = r.Detail,
+            }).FirstOrDefault();
+            return View(model);
+        }
+
+        [AdminAuthorize]
         public ActionResult Submit(CreateActivityVM cvm)
         {
 
@@ -62,6 +80,29 @@ namespace bys.activity.web.Areas.Backend.Controllers
             activityDal.Save(activity);
             return RedirectToAction("Index");
         }
+
+        [AdminAuthorize]
+        public ActionResult SubmitEdit(CreateActivityVM cvm)
+        {
+
+            Activity activity = new Activity()
+            {
+                ID = cvm.ID,
+                Name = cvm.Name,
+                EndDateTime = cvm.EndDateTime,
+                StartDateTime = cvm.StartDateTime,
+                Address = cvm.Address,
+                Detail = cvm.Description,
+                OriginatorAlias = User.Identity.Name,
+                CreateDate = DateTime.UtcNow.AddHours(8)
+            };
+
+            activityDal.Save(activity);
+            return RedirectToAction("Index");
+        }
+
+        
+
 
         [AdminAuthorize]
         public ActionResult Delete(Guid ActivityID)

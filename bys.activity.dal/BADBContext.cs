@@ -21,7 +21,10 @@ namespace bys.activity.dal
         public DbSet<SysLog> SysLogs { get; set; }
         public DbSet<ActivityLikeInfo> ActivityLikeInfos { get; set; }
 
-        
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
     }
 
     public class BADBContextInitializer : CreateDatabaseIfNotExists<BADBContext>

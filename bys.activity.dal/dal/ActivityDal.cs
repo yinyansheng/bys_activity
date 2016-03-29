@@ -15,12 +15,12 @@ namespace bys.activity.dal
             return db.SaveChanges() > 0;
         }
 
-        public List<Activity> GetByPage(string sortOrder,string searchString)
+        public List<Activity> GetByPage(string sortOrder, string searchString)
         {
             BADBContext db = new BADBContext();
 
             var activities = from a in db.Activities
-                           select a;
+                             select a;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -47,10 +47,18 @@ namespace bys.activity.dal
             return activities.ToList();
         }
 
+        public IList<Activity> GetByCondition(Func<Activity, bool> condition)
+        {
+            using (BADBContext db = new BADBContext())
+            {
+                return db.Activities.Where(condition).ToList();
+            }
+        }
+
         public List<Activity> GetAll()
         {
             BADBContext db = new BADBContext();
-            return db.Activities.OrderByDescending(r=>r.CreateDate).ToList();
+            return db.Activities.OrderByDescending(r => r.CreateDate).ToList();
         }
 
         public bool SaveJoinInfo(ActivityJoinInfo info)
@@ -61,7 +69,7 @@ namespace bys.activity.dal
                 return true;
 
             db.ActivityJoinInfos.Add(info);
-            return db.SaveChanges()>0;
+            return db.SaveChanges() > 0;
         }
 
         public bool SaveLikeInfo(ActivityLikeInfo info)
@@ -94,7 +102,7 @@ namespace bys.activity.dal
         public List<ActivityJoinInfo> GetAllJoinInfo(Guid ActivityID)
         {
             BADBContext db = new BADBContext();
-            return db.ActivityJoinInfos.Where(r =>r.ActivityID == ActivityID).ToList();
+            return db.ActivityJoinInfos.Where(r => r.ActivityID == ActivityID).ToList();
         }
 
         public List<ActivityLikeInfo> GetAllLikeInfo(Guid ActivityID)

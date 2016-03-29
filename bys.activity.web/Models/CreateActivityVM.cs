@@ -7,6 +7,7 @@ namespace bys.activity.web.Models
 {
     public class CreateActivityVM
     {
+        public Guid ID { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         public DateTime StartDateTime { get; set; }

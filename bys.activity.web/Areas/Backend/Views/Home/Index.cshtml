@@ -71,7 +71,7 @@
                         @item.Detail
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Create") |
+                        @Html.ActionLink("Edit", "Edit", new { @ActivityID = item.ID }) |
                         @Html.ActionLink("Detail", "Create") |
                         @Html.ActionLink("Delete", "Delete",new { @ActivityID = item.ID},new { @class="delete"})
                     </td>
