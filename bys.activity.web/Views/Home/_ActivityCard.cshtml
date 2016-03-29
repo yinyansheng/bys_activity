@@ -1,10 +1,12 @@
 ﻿@model bys.activity.web.Models.ActivityVM
+@using bys.activity.web.Utils
 
 <div class='panel @(Model.IsExpeired?"panel-default":"panel-success")'>
     <div class="panel-heading">
-        Badminton Activity (<label>Status:@(Model.IsExpeired ? "Expeired" : "In progress")</label>)
+        <label>@Model.activity.Name (@(Model.IsExpeired ? "Expeired" : "In progress")) </label>
+        <span class="glyphicon glyphicon-chevron-@(Model.IsExpeired ? "down" : "up") pull-right" aria-hidden="true"></span>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" style="display:@(Model.IsExpeired ? "none" : "")">
         <div class="row">
             <div class="col-md-3">
                 <img id="poster_img" src="~/Images/poster.jpg" width="200" height="300">
@@ -24,17 +26,15 @@
                 <label>Join Members(Total: @Model.JoinInfos.Count())</label><br />
                 @foreach (var member in Model.JoinInfos)
                 {
-                    <code> @member.MemberAlias.Split('\\')[1] </code>
+                    <code> @CommonUtils.GetShortName(member.MemberAlias) </code>
                 }
                 <br />
                 <br />
                 <label>Like Members(Total: @Model.LikeInfos.Count())</label><br />
                 @foreach (var member in Model.LikeInfos)
                 {
-                    <code> @member.MemberAlias.Split('\\')[1] </code>
+                    <code> @CommonUtils.GetShortName(member.MemberAlias)</code>
                 }
-
-               
 
             </div>
         </div>

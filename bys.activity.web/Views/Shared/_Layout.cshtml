@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using bys.activity.web.Utils
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,7 +38,7 @@
                         <a class="dropdown-toggle " href="javascript:void(0)" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="spliter">
-                                @User.Identity.Name.Split('\\')[1]
+                                @CommonUtils.GetShortName(User.Identity.Name)
                             </span>
                         </a>
                     </li>
@@ -51,7 +53,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - BeyondSoft(SZ)</p>
+            <p>&copy; @DateTime.Now.Year - BeyondSoft(SZ)| @Html.ActionLink("Beckend", "Index", new { controller = "Home", area = "Backend" }) </p>
         </footer>
     </div>
 

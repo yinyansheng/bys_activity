@@ -82,6 +82,26 @@ namespace bys.activity.web.Areas.Backend.Controllers
         }
 
         [AdminAuthorize]
+        public ActionResult Repeat(Guid ActivityID)
+        {
+            var target = activityDal.GetByCondition(delegate (Activity a)
+            {
+                return a.ID == ActivityID;
+            }).FirstOrDefault();
+
+            if (null != target) {
+                target.ID = Guid.NewGuid();
+                target.CreateDate = DateTime.UtcNow.AddHours(8);
+                activityDal.Save(target);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        
+
+
+        [AdminAuthorize]
         public ActionResult SubmitEdit(CreateActivityVM cvm)
         {
 
@@ -97,7 +117,7 @@ namespace bys.activity.web.Areas.Backend.Controllers
                 CreateDate = DateTime.UtcNow.AddHours(8)
             };
 
-            activityDal.Save(activity);
+            activityDal.Edit(activity);
             return RedirectToAction("Index");
         }
 

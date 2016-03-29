@@ -11,13 +11,6 @@
     @Html.HiddenFor(model => model.ID)
 
     <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Name</label>
-        <div class="col-sm-4">
-            @Html.TextBoxFor(model => model.Name, new { @class = "form-control required", @placeholder = "activity name" })
-        </div>
-    </div>
-
-    <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Type</label>
         <div class="col-sm-4">
             @Html.DropDownListFor(model => model.Type, new SelectListItem[] { new SelectListItem() { Text = "羽毛球", Value = "羽毛球" } }, new { @class = "form-control" })
@@ -61,6 +54,13 @@
     </div>
 
     <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control required", @placeholder = "activity name" })
+        </div>
+    </div>
+
+    <div class="form-group">
         <label for="inputAddress" class="col-sm-2 control-label">Address</label>
         <div class="col-sm-8">
             @Html.TextAreaFor(model => model.Address, new { @class = "form-control required", @placeholder = "address", @rows = "3" })
@@ -81,6 +81,8 @@
     </div>
 }
 
+
+
 <script src="~/Scripts/moment.js"></script>
 <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
 <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
@@ -88,11 +90,12 @@
 
 <script>
     $(function () {
-        $('#dp_start').datetimepicker();
-        $('#dp_end').datetimepicker();
+        $('#dp_start').datetimepicker({ format: 'YYYY/MM/DD hh:mm:ss'});
+        $('#dp_end').datetimepicker({ format: 'YYYY/MM/DD hh:mm:ss' });
 
         $("#dp_start").on("dp.change", function (e) {
             $('#dp_end').data("DateTimePicker").minDate(e.date);
+            $("#Name").val($("#Type").val() + '_[' + $("#StartDateTime").val() + ']');
         });
 
     });

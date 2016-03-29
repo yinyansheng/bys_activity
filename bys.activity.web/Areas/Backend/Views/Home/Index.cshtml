@@ -3,10 +3,20 @@
     int index = 1;
 }
 
+@using bys.activity.web.Utils
 @model PagedList.IPagedList<bys.activity.dal.Activity>
-@using PagedList.Mvc;
+@using PagedList.Mvc
+
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
+<style type="text/css">
+    .longText {
+        width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /*兼容IE*/
+    }
+</style>
 
 <br />
 @using (Html.BeginForm("Index", "Home", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
@@ -44,6 +54,12 @@
                 <th>
                     Detail
                 </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    CreateDate
+                </th>
                 <th class="col-md-2">
                     Operations
                 </th>
@@ -65,15 +81,21 @@
                         @item.EndDateTime
                     </td>
                     <td>
-                        @item.OriginatorAlias
+                        @CommonUtils.GetShortName(item.OriginatorAlias)
                     </td>
                     <td>
-                        @item.Detail
+                        <div class="longText" title="@item.Detail">@item.Detail</div>
+                    </td>
+                    <td>
+                        @Html.Raw(DateTime.UtcNow.AddHours(8) > item.StartDateTime ? "<b style='color:#EE4000'>Expired</b>" : "<b style='color:green'>Active</b>")
+                    </td>
+                    <td>
+                        @item.CreateDate
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { @ActivityID = item.ID }) |
-                        @Html.ActionLink("Detail", "Create") |
-                        @Html.ActionLink("Delete", "Delete",new { @ActivityID = item.ID},new { @class="delete"})
+                        @Html.ActionLink("Delete", "Delete", new { @ActivityID = item.ID }, new { @class = "delete" }) |
+                        @Html.ActionLink("Repeat", "Repeat", new { @ActivityID = item.ID })
                     </td>
                 </tr>
             }
@@ -103,3 +125,4 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
     })
 
 </script>
+

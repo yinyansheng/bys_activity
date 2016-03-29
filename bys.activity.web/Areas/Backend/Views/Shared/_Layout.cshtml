@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using bys.activity.web.Utils
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -25,16 +27,17 @@
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav navbar-right" id="Setting" data-position="bootom" data-intro="Here you can change type." data-step="2">
-                    <li class="active"><a href="#">Activity</a></li>
+                    <li class="active">
+                        @Html.ActionLink("Activity", "Index")
+                    </li>
                     <li><a href="#">Activity Type</a></li>
-                    @*<li><a href="#">Club</a></li>*@
                     <li><a href="#">Member</a></li>
 
                      <li class="dropdown">
                         <a class="dropdown-toggle " href="javascript:void(0)" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="spliter">
-                                @User.Identity.Name.Split('\\')[1]
+                                @CommonUtils.GetShortName(User.Identity.Name)
                             </span>
                         </a>
                     </li>
@@ -48,7 +51,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - bys</p>
+            <p>&copy; @DateTime.Now.Year - BeyondSoft(SZ) | @Html.ActionLink("Front End", "Index", new { controller = "Home", area = "" }) </p>
         </footer>
     </div>
 

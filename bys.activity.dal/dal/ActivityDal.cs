@@ -19,7 +19,7 @@ namespace bys.activity.dal
         {
             BADBContext db = new BADBContext();
 
-            var activities = from a in db.Activities
+            var activities = from a in db.Activities.OrderByDescending(r=>r.CreateDate)
                              select a;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -58,7 +58,7 @@ namespace bys.activity.dal
         public List<Activity> GetAll()
         {
             BADBContext db = new BADBContext();
-            return db.Activities.OrderByDescending(r => r.CreateDate).ToList();
+            return db.Activities.OrderByDescending(r=>r.StartDateTime).ThenByDescending(r => r.CreateDate).ToList();
         }
 
         public bool SaveJoinInfo(ActivityJoinInfo info)
@@ -97,6 +97,23 @@ namespace bys.activity.dal
             var info = db.ActivityLikeInfos.Where(r => r.MemberAlias == MemberAlias && r.ActivityID == ActivityID).FirstOrDefault();
             db.ActivityLikeInfos.Remove(info);
             return db.SaveChanges() > 0;
+        }
+
+        public void Edit(Activity activity)
+        {
+            using (BADBContext db = new BADBContext())
+            {
+                var old = db.Activities.Where(r => r.ID == activity.ID).FirstOrDefault();
+                if (null != old) {
+                    old.Name = activity.Name;
+                    old.StartDateTime = activity.StartDateTime;
+                    old.EndDateTime = activity.EndDateTime;
+                    old.Detail = activity.Detail;
+                    old.ActivityTypeID = activity.ActivityTypeID;
+                    old.Address = activity.Address;
+                }
+                db.SaveChanges();
+            }
         }
 
         public List<ActivityJoinInfo> GetAllJoinInfo(Guid ActivityID)

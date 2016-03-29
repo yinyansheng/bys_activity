@@ -17,5 +17,13 @@ namespace bys.activity.web.Utils
 
             return s.ToString("MM/dd HH:mm") + " -" + e.ToString("MM/dd HH:mm");
         }
+
+        public static string GetShortName(string name)
+        {
+            var names = name.Split('\\');
+            if (name.Length > 1)
+                return names[1];
+            return name;
+        }
     }
 }
