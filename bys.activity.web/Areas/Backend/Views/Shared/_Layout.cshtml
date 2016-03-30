@@ -1,4 +1,7 @@
 ﻿@using bys.activity.web.Utils
+@{ 
+    string controller = ViewContext.RouteData.Route.GetRouteData(this.Context).Values["controller"].ToString();
+}
 
 <!DOCTYPE html>
 <html>
@@ -27,11 +30,15 @@
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav navbar-right" id="Setting" data-position="bootom" data-intro="Here you can change type." data-step="2">
-                    <li class="active">
-                        @Html.ActionLink("Activity", "Index")
+                    <li class="@CommonUtils.GetNavBarLiClass(controller,"Home")">
+                        @Html.ActionLink("Activity", "Index", new { controller = "Home" })
                     </li>
-                    <li><a href="#">Activity Type</a></li>
-                    <li><a href="#">Member</a></li>
+                    <li class="@CommonUtils.GetNavBarLiClass(controller,"ActivityType")">
+                        @Html.ActionLink("ActivityType", "Index", new { controller = "ActivityType" })
+                    </li>
+                    <li class="@CommonUtils.GetNavBarLiClass(controller,"Member")">
+                        @Html.ActionLink("Member", "Index", new { controller = "Member" })
+                    </li>
 
                      <li class="dropdown">
                         <a class="dropdown-toggle " href="javascript:void(0)" data-toggle="dropdown">
@@ -42,7 +49,6 @@
                         </a>
                     </li>
                 </ul>
-
             </div>
         </div>
     </div>
@@ -57,5 +63,25 @@
 
 
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $(".delete").click(function () {
+                {
+                    if (confirm('are you sure to delete this?')) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            });
+
+        })
+
+    </script>
+
 </body>
 </html>

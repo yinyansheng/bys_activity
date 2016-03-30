@@ -52,6 +52,7 @@
     <Compile Include="ActivityType.cs" />
     <Compile Include="BADBContext.cs" />
     <Compile Include="dal\ActivityDal.cs" />
+    <Compile Include="dal\ActivityTypeDal.cs" />
     <Compile Include="dal\SysLogDal.cs" />
     <Compile Include="Migrations\201603170844596_init.cs" />
     <Compile Include="Migrations\201603170844596_init.Designer.cs">

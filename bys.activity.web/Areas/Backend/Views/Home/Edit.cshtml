@@ -13,7 +13,7 @@
     <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Type</label>
         <div class="col-sm-4">
-            @Html.DropDownListFor(model => model.Type, new SelectListItem[] { new SelectListItem() { Text = "羽毛球", Value = "羽毛球" } }, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.Type, new SelectListItem[] { new SelectListItem() { Text = "Badminton", Value = "Badminton" } }, new { @class = "form-control" })
         </div>
     </div>
 
@@ -97,7 +97,6 @@
             $('#dp_end').data("DateTimePicker").minDate(e.date);
             $("#Name").val($("#Type").val() + '_[' + $("#StartDateTime").val() + ']');
         });
-
     });
 
     $("#CreateForm").validate({

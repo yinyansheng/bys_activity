@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Backend\BackendAreaRegistration.cs" />
+    <Compile Include="Areas\Backend\Controllers\ActivityTypeController.cs" />
     <Compile Include="Areas\Backend\Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\AdminAuthorizeAttribute.cs" />
@@ -237,6 +238,9 @@
     <Content Include="Areas\Backend\Views\Home\Index.cshtml" />
     <Content Include="Areas\Backend\Views\Home\Create.cshtml" />
     <Content Include="Areas\Backend\Views\Home\Edit.cshtml" />
+    <Content Include="Areas\Backend\Views\ActivityType\Index.cshtml" />
+    <Content Include="Areas\Backend\Views\ActivityType\Create.cshtml" />
+    <Content Include="Areas\Backend\Views\ActivityType\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

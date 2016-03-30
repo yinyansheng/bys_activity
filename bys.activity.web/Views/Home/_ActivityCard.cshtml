@@ -4,9 +4,9 @@
 <div class='panel @(Model.IsExpeired?"panel-default":"panel-success")'>
     <div class="panel-heading">
         <label>@Model.activity.Name (@(Model.IsExpeired ? "Expeired" : "In progress")) </label>
-        <span class="glyphicon glyphicon-chevron-@(Model.IsExpeired ? "down" : "up") pull-right" aria-hidden="true"></span>
+        <span class="btn_collapsing glyphicon glyphicon-chevron-@(Model.IsExpeired ? "down" : "up") pull-right" aria-hidden="true" style="cursor:pointer" data-target="panel_@Model.activity.ID" data-status="@(Model.IsExpeired ? "down" : "up")"></span>
     </div>
-    <div class="panel-body" style="display:@(Model.IsExpeired ? "none" : "")">
+    <div class="panel-body" style="display:@(Model.IsExpeired ? "none" : "")" id="panel_@Model.activity.ID">
         <div class="row">
             <div class="col-md-3">
                 <img id="poster_img" src="~/Images/poster.jpg" width="200" height="300">

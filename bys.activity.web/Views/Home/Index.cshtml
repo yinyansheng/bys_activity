@@ -21,6 +21,23 @@
     }
 </style>
 
+<script type="text/javascript">
 
+    var collapsingFunction = function () {
+        if ($(this).data("status") === "up") {
+            $("#" + $(this).data("target")).css({ "display": "none" });
+            $(this).data("status", "down").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+        }
+        else {
+            $("#" + $(this).data("target")).css({ "display": "" });
+            $(this).data("status", "up").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+        }
+    }
+
+    $(function () {
+        $('.btn_collapsing').click(collapsingFunction);
+    })
+
+</script>
 
 @*https://microsoft-my.sharepoint.com/_layouts/15/me.aspx?u=0c821fd0-bd43-45dd-a822-5facc83e602d&p=v-yln%40microsoft.com&v=profile*@

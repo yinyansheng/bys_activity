@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bys.activity.dal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +10,7 @@ namespace bys.activity.web.Models
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
-        public string Type { get; set; }
+        public IEnumerable<ActivityType> Type { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public string Address { get; set; }

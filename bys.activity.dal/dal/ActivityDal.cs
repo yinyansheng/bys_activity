@@ -19,7 +19,7 @@ namespace bys.activity.dal
         {
             BADBContext db = new BADBContext();
 
-            var activities = from a in db.Activities.OrderByDescending(r=>r.CreateDate)
+            var activities = from a in db.Activities
                              select a;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -40,7 +40,7 @@ namespace bys.activity.dal
                     activities = activities.OrderByDescending(s => s.StartDateTime);
                     break;
                 default:
-                    activities = activities.OrderBy(s => s.Name);
+                    activities = activities.OrderByDescending(s => s.Name);
                     break;
             }
 

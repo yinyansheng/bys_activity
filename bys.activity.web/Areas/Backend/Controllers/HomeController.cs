@@ -13,6 +13,7 @@ namespace bys.activity.web.Areas.Backend.Controllers
     public class HomeController : Controller
     {
         private ActivityDal activityDal = new ActivityDal();
+        private ActivityTypeDal activityTypeDal = new ActivityTypeDal();
 
         [AdminAuthorize]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
@@ -40,7 +41,9 @@ namespace bys.activity.web.Areas.Backend.Controllers
         [AdminAuthorize]
         public ActionResult Create()
         {
-            return View();
+            CreateActivityVM cvm = new CreateActivityVM();
+            cvm.Type = activityTypeDal.GetAll();
+            return View(cvm);
         }
 
         [AdminAuthorize]
@@ -98,9 +101,6 @@ namespace bys.activity.web.Areas.Backend.Controllers
             return RedirectToAction("Index");
         }
 
-        
-
-
         [AdminAuthorize]
         public ActionResult SubmitEdit(CreateActivityVM cvm)
         {
@@ -121,14 +121,12 @@ namespace bys.activity.web.Areas.Backend.Controllers
             return RedirectToAction("Index");
         }
 
-        
-
-
         [AdminAuthorize]
         public ActionResult Delete(Guid ActivityID)
         {
             activityDal.Delete(ActivityID);
             return RedirectToAction("Index");
         }
+
     }
 }

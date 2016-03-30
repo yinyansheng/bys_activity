@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Activity Type";
+    int index = 1;
+}
+
+@model List<bys.activity.dal.ActivityType>
+
+<br/>
+<div class="form-group">
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default", @role = "button", @target = "_blank" })
+</div>
+<br />
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    PosterImagePath
+                </th>
+                <th class="col-md-2">
+                    Operations
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(index++)
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.PosterImagePath1
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { @ActivityTypeID = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { @ActivityTypeID = item.ID }, new { @class = "delete" }) |
+                        @Html.ActionLink("Repeat", "Repeat", new { @ActivityTypeID = item.ID })
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+
+

@@ -25,5 +25,13 @@ namespace bys.activity.web.Utils
                 return names[1];
             return name;
         }
+
+        public static string GetNavBarLiClass(string controller,string target)
+        {
+            if (controller.Equals(target, StringComparison.OrdinalIgnoreCase))
+                return "active";
+            return "";
+            
+        }
     }
 }

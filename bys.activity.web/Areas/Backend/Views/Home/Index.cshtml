@@ -107,22 +107,3 @@
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-
-<script>
-
-    $(function ()
-    {
-        $(".delete").click(function () {
-            {
-                if (confirm('are you sure to delete this?')) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-        });
-    })
-
-</script>
-
