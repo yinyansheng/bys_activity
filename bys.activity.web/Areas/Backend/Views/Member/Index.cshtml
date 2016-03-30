@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Member";
+    int index = 1;
+}
+
+@model List<bys.activity.dal.Member>
+
+<br />
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Alias
+                </th>
+                <th>
+                    DisplayName
+                </th>
+                <th>
+                    Avantar
+                </th>
+                <th>
+                    Operations
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(index++)
+                    </td>
+                    <td>
+                        @item.Alias
+                    </td>
+                    <td>
+                        @item.DisplayName
+                    </td>
+                    <td>
+                        <img src="@item.AvantarPath"/>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { @MemberID = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { @MemberID = item.ID }, new { @class = "delete" }) 
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+
+
