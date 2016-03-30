@@ -28,7 +28,10 @@
                 <th>
                     PosterImagePath
                 </th>
-                <th class="col-md-2">
+                <th>
+                    Rank
+                </th>
+                <th>
                     Operations
                 </th>
             </tr>
@@ -49,9 +52,14 @@
                         @item.PosterImagePath1
                     </td>
                     <td>
+                        @item.Rank
+                    </td>
+                    <td>
                         @Html.ActionLink("Edit", "Edit", new { @ActivityTypeID = item.ID }) |
                         @Html.ActionLink("Delete", "Delete", new { @ActivityTypeID = item.ID }, new { @class = "delete" }) |
-                        @Html.ActionLink("Repeat", "Repeat", new { @ActivityTypeID = item.ID })
+                        @Html.ActionLink("Repeat", "Repeat", new { @ActivityTypeID = item.ID }) |
+                        @Html.ActionLink("Up", "Up", new { @ActivityTypeID = item.ID }) |
+                        @Html.ActionLink("Down", "Down", new { @ActivityTypeID = item.ID })
                     </td>
                 </tr>
             }

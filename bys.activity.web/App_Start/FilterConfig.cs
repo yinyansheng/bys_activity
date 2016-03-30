@@ -10,6 +10,7 @@ namespace bys.activity.web
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new LogFilter());
+            filters.Add(new LoginFilter());
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using bys.activity.dal;
-using bys.activity.dal;
 using System;
 using System.Diagnostics;
 using System.Web.Mvc;

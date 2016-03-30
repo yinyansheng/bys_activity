@@ -42,7 +42,7 @@ namespace bys.activity.web.Areas.Backend.Controllers
         public ActionResult Create()
         {
             CreateActivityVM cvm = new CreateActivityVM();
-            cvm.Type = activityTypeDal.GetAll();
+            cvm.ActivityTypes = activityTypeDal.GetAll();
             return View(cvm);
         }
 
@@ -60,7 +60,10 @@ namespace bys.activity.web.Areas.Backend.Controllers
                 EndDateTime = r.EndDateTime,
                 Address = r.Address,
                 Description = r.Detail,
-            }).FirstOrDefault();
+                ActivityTypes = activityTypeDal.GetAll(),
+                ActivityTypeID=r.ActivityTypeID
+            })
+            .FirstOrDefault();
             return View(model);
         }
 
@@ -114,6 +117,7 @@ namespace bys.activity.web.Areas.Backend.Controllers
                 Address = cvm.Address,
                 Detail = cvm.Description,
                 OriginatorAlias = User.Identity.Name,
+                ActivityTypeID=cvm.ActivityTypeID,
                 CreateDate = DateTime.UtcNow.AddHours(8)
             };
 

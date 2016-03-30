@@ -20,7 +20,8 @@ namespace bys.activity.dal
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<SysLog> SysLogs { get; set; }
         public DbSet<ActivityLikeInfo> ActivityLikeInfos { get; set; }
-
+        public DbSet<Member> Members { get; set; }
+        
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

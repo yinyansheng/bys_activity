@@ -75,5 +75,21 @@ namespace bys.activity.web.Areas.Backend.Controllers
             activityTypeDal.Edit(at);
             return RedirectToAction("Index");
         }
+
+        [AdminAuthorize]
+        public ActionResult Up(Guid ActivityTypeID)
+        {
+            activityTypeDal.Up(ActivityTypeID);
+            return RedirectToAction("Index");
+        }
+
+
+        [AdminAuthorize]
+        public ActionResult Down(Guid ActivityTypeID)
+        {
+            activityTypeDal.Down(ActivityTypeID);
+            return RedirectToAction("Index");
+        }
+
     }
 }

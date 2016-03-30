@@ -11,6 +11,8 @@ namespace bys.activity.web.Models
         public List<ActivityVM> Activities { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public Member CurrentMember { get; set; }
         
     }
 

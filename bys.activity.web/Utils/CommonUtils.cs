@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bys.activity.dal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,8 @@ namespace bys.activity.web.Utils
 {
     public class CommonUtils
     {
+        private static MemberDal memberDal = new MemberDal();
+
         public static string GetTimeInfo(DateTime s, DateTime e)
         {
 
@@ -26,12 +29,21 @@ namespace bys.activity.web.Utils
             return name;
         }
 
+        public static Member GetMemberInfo(string CurrentAlias)
+        {
+            var currentMember = memberDal.GetByCondition(delegate (Member m)
+            {
+                return m.Alias.Equals(CurrentAlias);
+            }).FirstOrDefault();
+
+            return currentMember;
+        }
+
         public static string GetNavBarLiClass(string controller,string target)
         {
             if (controller.Equals(target, StringComparison.OrdinalIgnoreCase))
                 return "active";
             return "";
-            
         }
     }
 }

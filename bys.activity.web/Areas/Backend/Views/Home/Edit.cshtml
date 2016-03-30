@@ -13,7 +13,7 @@
     <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Type</label>
         <div class="col-sm-4">
-            @Html.DropDownListFor(model => model.Type, new SelectListItem[] { new SelectListItem() { Text = "Badminton", Value = "Badminton" } }, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.ActivityTypeID, @Model.ActivityTypes.Select(r => new SelectListItem() { Text = r.Name, Value = r.ID.ToString(),Selected=r.ID.Equals(Model.ActivityTypeID) }), new { @class = "form-control" })
         </div>
     </div>
 
@@ -90,12 +90,12 @@
 
 <script>
     $(function () {
-        $('#dp_start').datetimepicker();
-        $('#dp_end').datetimepicker();
+        $('#dp_start').datetimepicker({ format: 'YYYY-MM-DD HH:mm' });
+        $('#dp_end').datetimepicker({ format: 'YYYY-MM-DD HH:mm' });
 
         $("#dp_start").on("dp.change", function (e) {
             $('#dp_end').data("DateTimePicker").minDate(e.date);
-            $("#Name").val($("#Type option:selected").text() + '_[' + $("#StartDateTime").val() + ']');
+            $("#Name").val($("#ActivityTypeID option:selected").text() + '_[' + $("#StartDateTime").val() + ']');
         });
     });
 

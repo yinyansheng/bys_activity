@@ -8,23 +8,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace bys.activity.dal
 {
-    [Table("ba.activityType")]
-    public class ActivityType
+    [Table("ba.member")]
+    public class Member
     {
         [Key]
         public Guid ID { get; set; }
 
+        [MaxLength(100)]
+        public string Alias { get; set; }
+
+        [MaxLength(100)]
+        public string DisplayName { get; set; }
+
         [MaxLength(200)]
-        public string Name { get; set; }
-
-        [MaxLength(500)]
-        public string PosterImagePath1 { get; set; }
-
-        [MaxLength(1000)]
-        public string Description { get; set; }
-
-        public int?  Rank { get; set; }
+        public string AvantarPath { get; set; }
 
         public DateTime CreateDate { get; set; }
+
     }
 }

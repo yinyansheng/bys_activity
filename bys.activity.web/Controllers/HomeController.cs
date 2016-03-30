@@ -13,6 +13,7 @@ namespace bys.activity.web.Controllers
     public class HomeController : Controller
     {
         private ActivityDal activityDal = new ActivityDal();
+        private MemberDal memberDal = new MemberDal();
 
         public ActionResult Index()
         {
@@ -21,7 +22,11 @@ namespace bys.activity.web.Controllers
 
             var activities = activityDal.GetAll();
 
-            hvm.IsAdmin = Configer.Administrators.Contains(CurrentAlias.Split('\\')[1]);
+            hvm.IsAdmin = Configer.Administrators.Contains(CommonUtils.GetShortName(CurrentAlias));
+            hvm.CurrentMember = memberDal.GetByCondition(delegate (Member m)
+            {
+                return m.Alias.Equals(CurrentAlias);
+            }).FirstOrDefault();
 
             hvm.Activities = new List<ActivityVM>();
             foreach (var item in activities)

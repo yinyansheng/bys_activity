@@ -53,7 +53,9 @@
     <Compile Include="BADBContext.cs" />
     <Compile Include="dal\ActivityDal.cs" />
     <Compile Include="dal\ActivityTypeDal.cs" />
+    <Compile Include="dal\MemberDal.cs" />
     <Compile Include="dal\SysLogDal.cs" />
+    <Compile Include="Member.cs" />
     <Compile Include="Migrations\201603170844596_init.cs" />
     <Compile Include="Migrations\201603170844596_init.Designer.cs">
       <DependentUpon>201603170844596_init.cs</DependentUpon>
@@ -73,6 +75,14 @@
     <Compile Include="Migrations\201603281358111_add_like_table.cs" />
     <Compile Include="Migrations\201603281358111_add_like_table.Designer.cs">
       <DependentUpon>201603281358111_add_like_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603301107294_add rank for activity type.cs" />
+    <Compile Include="Migrations\201603301107294_add rank for activity type.Designer.cs">
+      <DependentUpon>201603301107294_add rank for activity type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603301224580_add Member Table.cs" />
+    <Compile Include="Migrations\201603301224580_add Member Table.Designer.cs">
+      <DependentUpon>201603301224580_add Member Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +107,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603281358111_add_like_table.resx">
       <DependentUpon>201603281358111_add_like_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603301107294_add rank for activity type.resx">
+      <DependentUpon>201603301107294_add rank for activity type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603301224580_add Member Table.resx">
+      <DependentUpon>201603301224580_add Member Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
