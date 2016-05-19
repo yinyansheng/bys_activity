@@ -24,7 +24,7 @@ namespace bys.activity.dal
         [MaxLength(200)]
         public string ActionName { get; set; }
         [MaxLength(200)]
-        public string MethodName { get; set; }   
+        public string MethodName { get; set; }        
         [MaxLength(200)]
         public string ExecuteTime { get; set; }
         [MaxLength(500)]
