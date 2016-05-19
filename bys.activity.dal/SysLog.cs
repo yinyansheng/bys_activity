@@ -29,7 +29,7 @@ namespace bys.activity.dal
         public string ExecuteTime { get; set; }
         [MaxLength(500)]
         public string Msg { get; set; }
-        public DateTime LogTime { get; set; }
+        public DateTime LogTime { get; set; }   
 
     }
 }
